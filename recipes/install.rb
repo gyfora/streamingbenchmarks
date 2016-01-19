@@ -35,7 +35,7 @@ for d in %w[ Test Test/data conf src bin ] do
     not_if { File.directory?("#{node[:streamingbenchmarks][:home]}/#{d}") }
   end
 end
-  
+
 remote_file "#{node[:streamingbenchmarks][:home]}/Test/data/tweets.txt"  do
   source "http://snurran.sics.se/hops/tweets.txt"
   checksum "4db5026349dd57febf4a68d56b7f1a2769df4eb6bd6b44a8155fe56f551903f7"
@@ -47,7 +47,7 @@ bench="intel-benchmarks.tgz"
 bench_src="intel-benchmarks-src.tgz"
 
 remote_file "/tmp/#{bench}"  do
-  source "http://snurran.sics.se/hops/#{bench}"
+  source "https://s3-eu-west-1.amazonaws.com/flink-files/#{bench}"
   mode 0755
   action :create
 end
@@ -63,6 +63,3 @@ bash "unpack_intel_benchmarks" do
 EOF
   not_if { ::File.exists?( "#{node[:streamingbenchmarks][:home]}/.benchmarks_downloaded" ) }
 end
-
-
-
