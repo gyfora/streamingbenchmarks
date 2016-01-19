@@ -2,27 +2,27 @@ name: LargeFlinkStreamingZookeeperKafka
 ec2:
     type: m3.large
     region: eu-west-1
-    
-cookbooks:                                                                      
-  hadoop: 
+
+cookbooks:
+  hadoop:
     github: "hopshadoop/apache-hadoop-chef"
     branch: "master"
-  flink: 
-    github: "hopshadoop/flink-chef"
+  flink:
+    github: "mbalassi/flink-chef"
     branch: "master"
-  spark: 
-    github: "hopshadoop/spark-chef"
+  spark:
+    github: "gyfora/spark-chef"
     branch: "master"
-  kzookeeper: 
+  kzookeeper:
     github: "hopshadoop/kzookeeper"
     branch: "master"
-  kkafka: 
+  kkafka:
     github: "hopshadoop/kkafka"
     branch: "master"
   streamingbenchmarks:
-    github: "jimdowling/streamingbenchmarks"
+    github: "gyfora/streamingbenchmarks"
     branch: "master"
-  java: 
+  java:
     github: "jimdowling/java"
     branch: "master"
 
@@ -43,7 +43,7 @@ groups:
   mgr:
     size: 1
     recipes:
-        - java    
+        - java
         - hadoop::nn
         - spark::master
         - flink::jobmanager
@@ -61,6 +61,6 @@ groups:
     size: 2
     recipes:
         - java
-        - hadoop::dn	
+        - hadoop::dn
         - flink::taskmanager
         - spark::worker
